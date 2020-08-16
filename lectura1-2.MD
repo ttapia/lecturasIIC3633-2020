@@ -1,0 +1,11 @@
+## Post original FunkSVD (Netflix Update: Try This at Home)
+
+El autor del post explica y relata el método que utilizó para enfrentar el problema planteado por Netflix Prize. Para esto, utilizó una técnica llamada *Singular Value Decomposition* (SVD) la cual la cual consiste en factorizar una matriz (en este caso la matriz formada por el número de usuarios y el número de películas) y así generar una caracterización diferente de los valores originales. Con esto, pudo reducir el número de parámetros de su modelo de 8.5B (17k peliculas x 500k usuarios) a menos de 60M ( (17k + 500k) * 100).
+
+Me parece que el post describe de manera muy dinámica el método utilizado y logra ejemplificar de buena manera los fundamentos detrás de la descomposición de los valores de ratings originales. Sin embargo, creo que quedan varios cabos sueltos que no logro comprender o encontrar un respaldo en el texto. De todos modos, considerando que este no es un artículo científico formal, es entendible que esto ocurra.
+
+En primer lugar, me llama la atención que para algunos valores el autor simplemente habla de que le gustaban a él o a sus colegas, como lo es con la cantidad de *features* (definida en 100) o la tasa de aprepndizaje.
+
+También me llama la atención la inicialización de los vectores, la cual es seteada en valores arbitrarios de 0.1. El autor menciona que esto no se ve afectado por estar sujeto a mínimos locales, pero que sí puede verse afectado por generar overfitting al aumentar demasiado el número de épocas a entrenar. Sin embargo, el autor no menciona que haya realizado algún cambio en este vector.
+
+Finalmente, me parece interesante el punto que plantea respecto al rating promedio de una película y como aborda los casos extremos en que las películas tienen pocas calificaciones. También me parece interesante incorporar el *offset* de cada usuario para la predicción base de una película, pero me parece que puede dejar de lado cierto nivel de subjetividad al incorporar las técnicas de *clipping* luego de la predicción de cada característica. Es posible que un usuario valore tanto un aspecto de una película que no sea tan importante para la clasificación que otro aspecto sea menor, por lo que de todas formas podría elegir el puntaje perfecto aun cuando haya un aspecto menor que (en teoría)perjudique su percepción.
