@@ -6,21 +6,13 @@ Desde un inicio se plantean las limitaciones que puede llegar a tener un modelo 
 
 Asimismo, el paper plantea que la preferencia, dada por el valor numérico asociado a un feedback explícito como un rating, puede ser aproximada analizando estos comportamientos implícitos. Para esto, se plantean las siguientes fórmulas:
 
-$$p_{u,i} = \left \{
-    \begin{array}{ll}
-        1 & r_{u,i}>0 \\
-        0 & r_{u,i}=0 \\
-    \end{array}
-\right. 
-$$
+![Fórmula de preferencia](https://i.imgur.com/hlXreGt.png "Preference")
 
-$$ c_{u,i} = 1 + \alpha r_{u,i} $$
+![Fórmula de confianza](https://i.imgur.com/as4p6Yn.png "Confidence")
 
 Para luego formular el problema de optimización de la siguiente forma:
 
-$$
-    \displaystyle min_{x*,y*}\sum_{u,i} c_{u,i}(p_{u,i}-x_{u}^{T}y_{i})^2 + \lambda(\sum_u ||x_u||^2 + \sum_i ||y_i||^2)
-$$
+![Función objetivo](https://i.imgur.com/c21gpW4.png "Optimization target function")
 
 Con la formulación anterior, queda muy clara la noción que se plantea respecto a la confianza que se le da a los comportamientos implícitos. Esto es, que una repetición del contenido va a tener un impacto positivo sobre la preferencia de los ítems a analizar, mientras que una visualización parcial va a tener una menor confianza lo cual se va a ponderar usando el factor $c_{u,i}$.
 
